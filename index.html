@@ -47,7 +47,7 @@ body{
 
 /* ===== HERO ===== */
 .hero{
-  min-height:auto; /* antes 100vh */
+  min-height:auto;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -367,11 +367,17 @@ footer a:hover{
 <a class="whatsapp" href="https://wa.me/5492634307686" target="_blank">💬</a>
 
 <script>
-const cards=document.querySelectorAll('.service-card');
-cards.forEach(card=>{
-  card.addEventListener('click',()=>{
-    cards.forEach(c=>c.classList.remove('active'));
-    card.classList.toggle('active');
+const cards = document.querySelectorAll('.service-card');
+
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    const isActive = card.classList.contains('active');
+    // Cerramos todos
+    cards.forEach(c => c.classList.remove('active'));
+    // Si no estaba activo antes, lo abrimos
+    if (!isActive) {
+      card.classList.add('active');
+    }
   });
 });
 </script>
