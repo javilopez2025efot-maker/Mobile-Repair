@@ -48,32 +48,62 @@
     /* ===== SERVICIOS ===== */
     .services {
       background: #0e1624;
-      padding: 80px 20px;
+      padding: 90px 20px;
       display: flex;
       justify-content: center;
+    }
+
+    .services-container {
+      width: 100%;
+      max-width: 700px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
     .service-card {
       background: #111c2e;
       color: #fff;
-      max-width: 600px;
-      width: 100%;
       border-radius: 18px;
-      padding: 35px;
+      padding: 30px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      transition: background 0.3s ease;
     }
 
-    .service-card h2 {
-      font-size: 1.8rem;
-      margin-bottom: 15px;
+    .service-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .service-header h2 {
+      font-size: 1.6rem;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .service-card p {
+    .arrow {
+      font-size: 1.6rem;
+      transition: transform 0.3s ease;
+    }
+
+    .service-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      margin-top: 10px;
       line-height: 1.7;
       opacity: 0.9;
+    }
+
+    .service-card.active .service-content {
+      max-height: 300px;
+    }
+
+    .service-card.active .arrow {
+      transform: rotate(45deg);
     }
 
     /* ===== FOOTER ===== */
@@ -100,6 +130,7 @@
     @media (max-width: 600px) {
       .hero h1 { font-size: 2.2rem; }
       .hero p { font-size: 1.05rem; }
+      .service-header h2 { font-size: 1.3rem; }
     }
   </style>
 </head>
@@ -115,14 +146,38 @@
 
   <!-- SERVICIOS -->
   <section class="services">
-    <div class="service-card">
-      <h2>📱 Cambio de Pantalla</h2>
-      <p>
-        <strong>¿Pantalla rota o trizada?</strong><br><br>
-        Somos la solución. Reemplazamos tu pantalla por una nueva y de alta calidad,
-        garantizando una excelente respuesta táctil y una visualización perfecta
-        para que vuelvas a usar tu celular como el primer día.
-      </p>
+    <div class="services-container">
+
+      <div class="service-card">
+        <div class="service-header">
+          <h2>📱 Cambio de Pantalla</h2>
+          <span class="arrow">+</span>
+        </div>
+        <div class="service-content">
+          <p>
+            <strong>¿Pantalla rota o trizada?</strong><br><br>
+            Somos la solución. Reemplazamos tu pantalla por una nueva y de alta calidad,
+            garantizando una excelente respuesta táctil y una visualización perfecta
+            para que vuelvas a usar tu celular como el primer día.
+          </p>
+        </div>
+      </div>
+
+      <!-- COPIÁ DESDE ACÁ PARA MÁS SERVICIOS -->
+      <div class="service-card">
+        <div class="service-header">
+          <h2>🔋 Cambio de Batería</h2>
+          <span class="arrow">+</span>
+        </div>
+        <div class="service-content">
+          <p>
+            Si tu celular se apaga rápido o no rinde como antes,
+            reemplazamos la batería por una nueva para que vuelva
+            a durar todo el día sin problemas.
+          </p>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -130,6 +185,24 @@
   <footer>
     Mobile Repair · Contacto por WhatsApp / Instagram
   </footer>
+
+  <!-- JS ACORDEÓN -->
+  <script>
+    const serviceCards = document.querySelectorAll('.service-card');
+
+    serviceCards.forEach(card => {
+      const header = card.querySelector('.service-header');
+
+      header.addEventListener('click', () => {
+        if (card.classList.contains('active')) {
+          card.classList.remove('active');
+        } else {
+          serviceCards.forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
