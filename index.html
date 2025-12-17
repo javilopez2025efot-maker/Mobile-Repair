@@ -55,7 +55,7 @@
 
     .services-container {
       width: 100%;
-      max-width: 700px;
+      max-width: 750px;
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -65,9 +65,8 @@
       background: #111c2e;
       color: #fff;
       border-radius: 18px;
-      padding: 30px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-      transition: background 0.3s ease;
+      padding: 28px 30px;
+      box-shadow: 0 18px 35px rgba(0,0,0,0.4);
     }
 
     .service-header {
@@ -78,7 +77,7 @@
     }
 
     .service-header h2 {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -92,14 +91,14 @@
     .service-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease;
-      margin-top: 10px;
-      line-height: 1.7;
+      transition: max-height 0.45s ease;
+      margin-top: 12px;
+      line-height: 1.6;
       opacity: 0.9;
     }
 
     .service-card.active .service-content {
-      max-height: 300px;
+      max-height: 400px;
     }
 
     .service-card.active .arrow {
@@ -140,7 +139,7 @@
   <section class="hero">
     <div>
       <h1>Mobile Repair</h1>
-      <p>Reparación profesional de celulares y soluciones tecnológicas</p>
+      <p>Reparación profesional de celulares</p>
     </div>
   </section>
 
@@ -155,18 +154,17 @@
         </div>
         <div class="service-content">
           <p>
-            <strong>¿Pantalla rota o trizada?</strong><br><br>
-            Somos la solución. Reemplazamos tu pantalla por una nueva y de alta calidad,
-            garantizando una excelente respuesta táctil y una visualización perfecta
-            para que vuelvas a usar tu celular como el primer día.
+            <strong>¿Pantalla rota o trizada? ¿Tenés problemas táctiles?</strong><br><br>
+            Soy la solución. Cambio tu pantalla por una nueva y de calidad,
+            para que te olvides de los problemas de seguridad, toques fantasmas
+            y molestias del uso diario.
           </p>
         </div>
       </div>
 
-      <!-- COPIÁ DESDE ACÁ PARA MÁS SERVICIOS -->
       <div class="service-card">
         <div class="service-header">
-          <h2>🔋 Cambio de Batería</h2>
+          <h2>🔋 Reemplazo de Batería</h2>
           <span class="arrow">+</span>
         </div>
         <div class="service-content">
@@ -174,6 +172,75 @@
             Si tu celular se apaga rápido o no rinde como antes,
             reemplazamos la batería por una nueva para que vuelva
             a durar todo el día sin problemas.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-header">
+          <h2>⚡ Reparación de Pin de Carga</h2>
+          <span class="arrow">+</span>
+        </div>
+        <div class="service-content">
+          <p>
+            Si tu equipo no carga o solo lo hace en cierta posición,
+            reparamos o reemplazamos el pin de carga para que vuelva
+            a funcionar correctamente y sin riesgos.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-header">
+          <h2>💻 Software · Formateo · Actualización</h2>
+          <span class="arrow">+</span>
+        </div>
+        <div class="service-content">
+          <p>
+            Optimizamos el sistema de tu celular mediante formateo,
+            actualización o reparación de software para que vuelva
+            a funcionar rápido y estable.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-header">
+          <h2>🔐 Eliminación de Cuenta Google</h2>
+          <span class="arrow">+</span>
+        </div>
+        <div class="service-content">
+          <p>
+            ¿Reiniciaste o formateaste tu celular y ahora te pide
+            una cuenta Google que no recordás?  
+            En ciertos modelos este problema tiene solución.
+            Consultanos y evaluamos tu equipo.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-header">
+          <h2>🛠 Diagnóstico Rápido</h2>
+          <span class="arrow">+</span>
+        </div>
+        <div class="service-content">
+          <p>
+            Realizamos un diagnóstico rápido para detectar la falla
+            y ofrecerte la mejor solución, sin demoras ni sorpresas.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-header">
+          <h2>📲 Atendemos Todas las Marcas</h2>
+          <span class="arrow">+</span>
+        </div>
+        <div class="service-content">
+          <p>
+            Trabajamos con las principales marcas del mercado,
+            ofreciendo soluciones adaptadas a cada modelo.
           </p>
         </div>
       </div>
@@ -188,16 +255,16 @@
 
   <!-- JS ACORDEÓN -->
   <script>
-    const serviceCards = document.querySelectorAll('.service-card');
+    const cards = document.querySelectorAll('.service-card');
 
-    serviceCards.forEach(card => {
+    cards.forEach(card => {
       const header = card.querySelector('.service-header');
 
       header.addEventListener('click', () => {
         if (card.classList.contains('active')) {
           card.classList.remove('active');
         } else {
-          serviceCards.forEach(c => c.classList.remove('active'));
+          cards.forEach(c => c.classList.remove('active'));
           card.classList.add('active');
         }
       });
