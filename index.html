@@ -4,76 +4,94 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mobile Repair</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-    body {
-      background: url('Fondo.png') no-repeat center center fixed;
-      background-size: cover;
-      color: #f8fafc;
-      overflow-x: hidden;
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+
+    body, html {
+      height: 100%;
+      scroll-behavior: smooth;
     }
 
-    header {
+    /* HERO */
+    .hero {
       min-height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+                  url('Fondo de pantalla-1x1.png') center center / cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(2px);
+      color: #fff;
+      padding: 20px;
     }
 
-    @keyframes gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    header h1 {
+    .hero h1 {
       font-size: 3rem;
-      font-weight: 700;
+      margin-bottom: 10px;
       animation: fadeDown 1.2s ease;
     }
 
-    header p {
-      margin-top: 1rem;
-      font-size: 1.2rem;
-      animation: fadeUp 1.5s ease;
+    .hero p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      animation: fadeUp 1.2s ease;
     }
 
-    section {
-      padding: 5rem 10%;
+    /* SERVICIOS */
+    .services {
+      background: #0e1624;
+      padding: 80px 20px;
+      display: flex;
+      justify-content: center;
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
+    .service-card {
+      background: #111c2e;
+      border-radius: 18px;
+      width: 100%;
+      max-width: 600px;
+      padding: 30px;
+      color: #fff;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
 
-    .card {
-      background: #020617;
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .service-card:hover {
+      transform: translateY(-5px);
     }
 
-    .card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(37,99,235,0.4);
+    .service-header {
+      font-size: 1.6rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .card h3 { margin-bottom: 1rem; }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #020617;
+    .service-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      margin-top: 15px;
+      line-height: 1.6;
       opacity: 0.9;
     }
 
+    .service-card.active .service-content {
+      max-height: 300px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0a1120;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+
+    /* ANIMACIONES */
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -83,22 +101,49 @@
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2.2rem; }
+      .hero p { font-size: 1.1rem; }
+    }
   </style>
 </head>
 <body>
 
-  <header>
+  <section class="hero">
     <div>
       <h1>Mobile Repair</h1>
-      <p>Reparación profesional de celulares y soluciones tecnológicas</p>
+      <p>Especialistas en reparación de celulares</p>
     </div>
-  </header>
+  </section>
 
-  
+  <section class="services">
+    <div class="service-card" onclick="toggleService(this)">
+      <div class="service-header">
+        <span>📱 Cambio de Pantalla</span>
+        <span>＋</span>
+      </div>
+      <div class="service-content">
+        <p>
+          ¿Pantalla rota o trizada? ¿Problemas con el táctil?
+          <br /><br />
+          Ofrecemos cambio de pantalla con repuestos de calidad, asegurando una correcta respuesta táctil, mayor seguridad y una experiencia de uso como nueva.
+          <br /><br />
+          Olvidate de los toques fantasma, riesgos por vidrio roto y molestias en el uso diario.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <footer>
-    <p>📱 Mobile Repair • Contacto por WhatsApp / Instagram</p>
+    Mobile Repair · Contacto por WhatsApp / Instagram
   </footer>
+
+  <script>
+    function toggleService(card) {
+      card.classList.toggle('active');
+    }
+  </script>
 
 </body>
 </html>
