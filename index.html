@@ -70,7 +70,7 @@ body{
   color:var(--text-muted);
 }
 
-/* ===== HERO INFO (PUENTE) ===== */
+/* ===== HERO INFO ===== */
 .hero-info{
   padding:20px 20px 50px;
   text-align:center;
@@ -174,23 +174,20 @@ body{
   transition:transform .3s ease,color .3s ease;
 }
 
+.service-card.active .toggle{
+  transform:rotate(45deg);
+  color:var(--neon-green);
+}
+
+/* Transición suave para contenido */
 .service-content{
   max-height:0;
   overflow:hidden;
-  transition:max-height .45s ease;
+  transition: all 0.5s ease;
   margin-top:14px;
   font-size:.95rem;
   line-height:1.6;
   color:var(--text-muted);
-}
-
-.service-card.active .service-content{
-  max-height:260px;
-}
-
-.service-card.active .toggle{
-  transform:rotate(45deg);
-  color:var(--neon-green);
 }
 
 /* ===== CONFIANZA ===== */
@@ -370,13 +367,20 @@ footer a:hover{
 const cards = document.querySelectorAll('.service-card');
 
 cards.forEach(card => {
+  const content = card.querySelector('.service-content');
+
   card.addEventListener('click', () => {
     const isActive = card.classList.contains('active');
-    // Cerramos todos
-    cards.forEach(c => c.classList.remove('active'));
-    // Si no estaba activo antes, lo abrimos
+
+    // Cerramos todos suavemente
+    cards.forEach(c => {
+      c.classList.remove('active');
+      c.querySelector('.service-content').style.maxHeight = null;
+    });
+
     if (!isActive) {
       card.classList.add('active');
+      content.style.maxHeight = content.scrollHeight + "px";
     }
   });
 });
