@@ -61,12 +61,30 @@
     }
 
     .service-header {
-      font-size: 1.6rem;
-      font-weight: 600;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  padding: 40px 20px;
+  background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('Fondo.png') center / cover no-repeat;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 0;
+}
+
+header > * {
+  position: relative;
+  z-index: 1;
+}
 
     .service-content {
       max-height: 0;
@@ -109,23 +127,23 @@
 </head>
 <body>
   <header>
-    <h1>Mobile Repair</h1>
-    <p class="subtitle">Especialistas en reparación de celulares</p>
+  <h1>Mobile Repair</h1>
+  <p class="subtitle">Especialistas en reparación de celulares</p>
 
-    <div class="hero-service">
-      <div class="service-card" onclick="this.classList.toggle('open')">
-        <div class="service-header">
-          <span class="icon">📱</span>
-          <h3>Cambio de Pantalla</h3>
-          <span class="toggle">+</span>
-        </div>
-        <div class="service-content">
-          <p><strong>¿Pantalla rota o trizada?</strong></p>
-          <p>Somos la solución. Reemplazamos tu pantalla por una nueva y de calidad, para que te olvides de los problemas de seguridad, fallas táctiles y molestias visuales.</p>
-        </div>
+  <div class="hero-service">
+    <div class="service-card" onclick="this.classList.toggle('open')">
+      <div class="service-header">
+        <span class="icon">📱</span>
+        <h3>Cambio de Pantalla</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="service-content">
+        <p><strong>¿Pantalla rota o trizada?</strong></p>
+        <p>Somos la solución. Reemplazamos tu pantalla por una nueva y de calidad, para que te olvides de los problemas de seguridad, fallas táctiles y molestias en el uso diario.</p>
       </div>
     </div>
-  </header>
+  </div>
+</header>
 
   <section class="hero-service">
     <div class="service-card" onclick="this.classList.toggle('open')">
@@ -146,4 +164,3 @@
   </footer>
 </body>
 </html>
-
