@@ -15,8 +15,7 @@
     /* HERO */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-                  url('Fondo de pantalla-1x1.png') center center / cover no-repeat;
+      background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('fondo.png') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -112,6 +111,20 @@
   <header>
     <h1>Mobile Repair</h1>
     <p class="subtitle">Especialistas en reparación de celulares</p>
+
+    <div class="hero-service">
+      <div class="service-card" onclick="this.classList.toggle('open')">
+        <div class="service-header">
+          <span class="icon">📱</span>
+          <h3>Cambio de Pantalla</h3>
+          <span class="toggle">+</span>
+        </div>
+        <div class="service-content">
+          <p><strong>¿Pantalla rota o trizada?</strong></p>
+          <p>Somos la solución. Reemplazamos tu pantalla por una nueva y de calidad, para que te olvides de los problemas de seguridad, fallas táctiles y molestias visuales.</p>
+        </div>
+      </div>
+    </div>
   </header>
 
   <section class="hero-service">
@@ -133,3 +146,4 @@
   </footer>
 </body>
 </html>
+
