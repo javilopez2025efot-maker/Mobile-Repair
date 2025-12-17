@@ -109,28 +109,21 @@
   </style>
 </head>
 <body>
+  <header>
+    <h1>Mobile Repair</h1>
+    <p class="subtitle">Especialistas en reparación de celulares</p>
+  </header>
 
-  <section class="hero">
-    <div>
-      <h1>Mobile Repair</h1>
-      <p>Especialistas en reparación de celulares</p>
-    </div>
-  </section>
-
-  <section class="services">
-    <div class="service-card" onclick="toggleService(this)">
+  <section class="hero-service">
+    <div class="service-card" onclick="this.classList.toggle('open')">
       <div class="service-header">
-        <span>📱 Cambio de Pantalla</span>
-        <span>＋</span>
+        <span class="icon">📱</span>
+        <h3>Cambio de Pantalla</h3>
+        <span class="toggle">+</span>
       </div>
       <div class="service-content">
-        <p>
-          ¿Pantalla rota o trizada? ¿Problemas con el táctil?
-          <br /><br />
-          Ofrecemos cambio de pantalla con repuestos de calidad, asegurando una correcta respuesta táctil, mayor seguridad y una experiencia de uso como nueva.
-          <br /><br />
-          Olvidate de los toques fantasma, riesgos por vidrio roto y molestias en el uso diario.
-        </p>
+        <p><strong>¿Pantalla rota o trizada?</strong></p>
+        <p>Somos la solución. Reemplazamos tu pantalla por una nueva y de calidad, para que te olvides de los problemas de seguridad, fallas táctiles y molestias visuales.</p>
       </div>
     </div>
   </section>
@@ -138,12 +131,5 @@
   <footer>
     Mobile Repair · Contacto por WhatsApp / Instagram
   </footer>
-
-  <script>
-    function toggleService(card) {
-      card.classList.toggle('active');
-    }
-  </script>
-
 </body>
 </html>
