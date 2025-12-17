@@ -6,204 +6,266 @@
 <title>Mobile Repair</title>
 
 <style>
-:root {
-  --neon-1: #00e5ff;
-  --neon-2: #7c4dff;
-  --neon-3: #18ffff;
+/* ================= BASE ================= */
+:root{
+  --bg-main:#080c1a;
+  --bg-card:#0f1730;
+  --neon-blue:#00e5ff;
+  --neon-violet:#7c4dff;
+  --neon-green:#18ffb2;
+  --text-main:#eaf6ff;
+  --text-muted:#a8b2d1;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',system-ui,sans-serif;
 }
 
-body {
-  background: #0e1624;
-  color: #fff;
+body{
+  background:var(--bg-main);
+  color:var(--text-main);
+  overflow-x:hidden;
 }
 
-/* ===== HERO ===== */
-.hero {
-  min-height: 100vh;
+/* ================= FONDO PREMIUM ================= */
+.background{
+  position:fixed;
+  inset:0;
   background:
-    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-    url("Fondo.png") center 35% / cover no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  animation: neonShift 14s infinite alternate;
+    radial-gradient(circle at 15% 20%, rgba(0,229,255,.18), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(124,77,255,.20), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(24,255,178,.14), transparent 50%);
+  animation:bgFloat 22s ease-in-out infinite alternate;
+  z-index:-1;
 }
 
-.hero h1 {
-  font-size: 3rem;
+@keyframes bgFloat{
+  0%{filter:hue-rotate(0deg);}
+  100%{filter:hue-rotate(45deg);}
+}
+
+/* ================= HERO ================= */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:40px 20px;
+}
+
+.hero h1{
+  font-size:3.4rem;
+  letter-spacing:1.2px;
   text-shadow:
-    0 0 15px rgba(0,229,255,0.4),
-    0 0 40px rgba(124,77,255,0.3);
+    0 0 14px rgba(0,229,255,.7),
+    0 0 45px rgba(124,77,255,.5);
 }
 
-.hero p {
-  margin-top: 10px;
-  font-size: 1.2rem;
-  color: #e0f7ff;
+.hero p{
+  margin-top:16px;
+  font-size:1.3rem;
+  color:var(--text-muted);
 }
 
-/* ===== ANIMACIONES GLOBALES ===== */
-@keyframes neonShift {
-  0% { filter: hue-rotate(0deg); }
-  50% { filter: hue-rotate(35deg); }
-  100% { filter: hue-rotate(0deg); }
+/* ================= CTA ================= */
+.hero-cta{
+  margin-top:28px;
 }
 
-/* ===== SERVICIOS ===== */
-.services {
-  padding: 80px 20px;
+.hero-cta a{
+  display:inline-block;
+  padding:14px 28px;
+  border-radius:40px;
+  background:linear-gradient(120deg,var(--neon-blue),var(--neon-violet));
+  color:#000;
+  font-weight:600;
+  text-decoration:none;
+  box-shadow:0 0 25px rgba(0,229,255,.6);
+  transition:transform .3s ease, box-shadow .3s ease;
 }
 
-.services-container {
-  max-width: 1100px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
+.hero-cta a:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 40px rgba(124,77,255,.9);
 }
 
-.service-card {
-  position: relative;
-  background: #111c2e;
-  border-radius: 16px;
-  padding: 22px 24px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-  overflow: hidden;
-  transition: transform 0.3s ease;
+/* ================= SERVICIOS ================= */
+.services{
+  padding:80px 20px 100px;
 }
 
-.service-card::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: 16px;
-  background: linear-gradient(120deg, var(--neon-1), var(--neon-2), var(--neon-3));
-  opacity: 0;
-  transition: opacity 0.4s ease;
+.services h2{
+  text-align:center;
+  font-size:2.2rem;
+  margin-bottom:55px;
+  text-shadow:0 0 12px rgba(0,229,255,.5);
 }
 
-.service-card > * {
-  position: relative;
-  z-index: 1;
+.services-container{
+  max-width:1150px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
 }
 
-.service-card:hover {
-  transform: translateY(-6px);
+/* ================= TARJETAS ================= */
+.service-card{
+  background:linear-gradient(180deg,#121b3a,#0b1228);
+  border-radius:20px;
+  padding:24px 26px;
+  box-shadow:0 22px 55px rgba(0,0,0,.65);
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform .35s ease;
 }
 
-.service-card:hover::before,
-.service-card.active::before {
-  opacity: 0.25;
+.service-card::before{
+  content:'';
+  position:absolute;
+  inset:-1px;
+  border-radius:20px;
+  background:linear-gradient(120deg,var(--neon-blue),var(--neon-violet),var(--neon-green));
+  opacity:0;
+  transition:opacity .4s ease;
 }
 
-.service-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
+.service-card>*{
+  position:relative;
+  z-index:1;
 }
 
-.service-header h3 {
-  font-size: 1.15rem;
-  font-weight: 500;
-  color: #e6faff;
-  display: flex;
-  gap: 8px;
-  align-items: center;
+.service-card:hover{
+  transform:translateY(-7px);
 }
 
-.arrow {
-  font-size: 1.4rem;
-  color: var(--neon-1);
-  text-shadow: 0 0 6px rgba(0,229,255,0.6);
-  transition: transform 0.3s ease, color 0.3s ease;
+.service-card.active::before{
+  opacity:.30;
 }
 
-.service-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  opacity: 0.9;
-  margin-top: 10px;
+/* ================= HEADER ================= */
+.service-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-/* ACTIVO */
-.service-card.active .service-content {
-  max-height: 300px;
+.service-header h3{
+  font-size:1.05rem;
+  font-weight:500;
+  display:flex;
+  gap:10px;
+  align-items:center;
 }
 
-.service-card.active .arrow {
-  transform: rotate(45deg) scale(1.1);
-  color: var(--neon-2);
+.toggle{
+  font-size:1.4rem;
+  color:var(--neon-blue);
+  transition:transform .3s ease,color .3s ease;
 }
 
-.service-card.active h3 {
-  color: var(--neon-1);
-  text-shadow: 0 0 6px rgba(0,229,255,0.6);
+/* ================= CONTENIDO ================= */
+.service-content{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .45s ease;
+  margin-top:14px;
+  font-size:.95rem;
+  line-height:1.6;
+  color:var(--text-muted);
 }
 
-/* Glow pulsante */
-@keyframes glowPulse {
-  0% { box-shadow: 0 0 12px rgba(0,229,255,0.25); }
-  50% { box-shadow: 0 0 28px rgba(124,77,255,0.45); }
-  100% { box-shadow: 0 0 12px rgba(0,229,255,0.25); }
+.service-card.active .service-content{
+  max-height:260px;
 }
 
-.service-card.active {
-  animation: glowPulse 3s infinite;
+.service-card.active .toggle{
+  transform:rotate(45deg);
+  color:var(--neon-green);
 }
 
-/* ===== FOOTER ===== */
-footer {
-  background: #0a1120;
-  color: #aaa;
-  text-align: center;
-  padding: 20px;
-  font-size: 0.85rem;
+/* ================= CONFIANZA ================= */
+.trust{
+  padding:70px 20px;
+  text-align:center;
 }
 
-footer a {
-  color: var(--neon-1);
-  text-decoration: none;
-  margin: 0 4px;
+.trust p{
+  max-width:720px;
+  margin:auto;
+  font-size:1.05rem;
+  color:var(--text-muted);
 }
 
-footer a:hover {
-  text-shadow: 0 0 8px var(--neon-1);
+/* ================= FOOTER ================= */
+footer{
+  background:#060a16;
+  padding:35px 20px;
+  text-align:center;
+  font-size:.9rem;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-  .services-container {
-    grid-template-columns: repeat(2, 1fr);
+footer a{
+  color:var(--neon-blue);
+  text-decoration:none;
+  margin:0 12px;
+}
+
+footer a:hover{
+  text-shadow:0 0 8px var(--neon-blue);
+}
+
+/* ================= WHATSAPP FLOAT ================= */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:linear-gradient(120deg,#25d366,#18ffb2);
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#000;
+  font-size:1.6rem;
+  text-decoration:none;
+  box-shadow:0 0 25px rgba(37,211,102,.7);
+  z-index:5;
+  transition:transform .3s ease;
+}
+
+.whatsapp:hover{
+  transform:scale(1.1);
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+  .services-container{
+    grid-template-columns:repeat(2,1fr);
   }
 }
 
-@media (max-width: 600px) {
-  .services-container {
-    grid-template-columns: 1fr;
+@media(max-width:600px){
+  .hero{
+    min-height:85vh;
   }
 
-  .hero h1 {
-    font-size: 2.1rem;
+  .hero h1{
+    font-size:2.4rem;
   }
 
-  .hero p {
-    font-size: 1rem;
+  .hero p{
+    font-size:1.05rem;
   }
 
-  .service-header h3 {
-    font-size: 1.05rem;
+  .services-container{
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -211,106 +273,120 @@ footer a:hover {
 
 <body>
 
+<div class="background"></div>
+
 <section class="hero">
   <div>
     <h1>Mobile Repair</h1>
     <p>Especialistas en reparación de celulares</p>
+
+    <div class="hero-cta">
+      <a href="https://wa.me/5492634307686" target="_blank">Contactar por WhatsApp</a>
+    </div>
   </div>
 </section>
 
 <section class="services">
+  <h2>Servicios</h2>
+
   <div class="services-container">
 
     <div class="service-card">
       <div class="service-header">
-        <h3>📱 Cambio de Pantalla</h3><span class="arrow">+</span>
+        <h3>📱 Cambio de Pantalla</h3><span class="toggle">+</span>
       </div>
       <div class="service-content">
-        <p><strong>¿Pantalla rota o trizada? ¿Tenés problemas táctiles?</strong><br><br>
-        Cambio tu pantalla por una nueva y de calidad para que te olvides de
-        toques fantasmas y molestias del uso diario.</p>
+        <p><strong>¿Pantalla rota o problemas táctiles?</strong><br><br>
+        Reemplazo de pantalla por repuestos de calidad para que tu equipo
+        vuelva a verse y funcionar como el primer día.</p>
       </div>
     </div>
 
     <div class="service-card">
       <div class="service-header">
-        <h3>🔋 Reemplazo de Batería</h3><span class="arrow">+</span>
+        <h3>🔋 Reemplazo de Batería</h3><span class="toggle">+</span>
       </div>
       <div class="service-content">
         <p>Si tu celular se apaga rápido o no rinde como antes,
-        reemplazamos la batería para que vuelva a durar todo el día.</p>
+        cambiamos la batería para devolverle autonomía total.</p>
       </div>
     </div>
 
     <div class="service-card">
       <div class="service-header">
-        <h3>⚡ Pin de Carga</h3><span class="arrow">+</span>
+        <h3>⚡ Pin de Carga</h3><span class="toggle">+</span>
       </div>
       <div class="service-content">
-        <p>Reparación o reemplazo del pin cuando el equipo
-        no carga o solo funciona en cierta posición.</p>
+        <p>Solución definitiva cuando el equipo no carga
+        o solo funciona en determinadas posiciones.</p>
       </div>
     </div>
 
     <div class="service-card">
       <div class="service-header">
-        <h3>💻 Software / Formateo</h3><span class="arrow">+</span>
+        <h3>💻 Software / Formateo</h3><span class="toggle">+</span>
       </div>
       <div class="service-content">
-        <p>Formateo, actualización y optimización para que
-        tu celular vuelva a funcionar rápido y estable.</p>
+        <p>Formateo, actualización y optimización para
+        mejorar rendimiento y estabilidad.</p>
       </div>
     </div>
 
     <div class="service-card">
       <div class="service-header">
-        <h3>🔐 Eliminación Cuenta Google</h3><span class="arrow">+</span>
+        <h3>🔐 Cuenta Google</h3><span class="toggle">+</span>
       </div>
       <div class="service-content">
-        <p>Si formateaste tu equipo y te pide una cuenta que no recordás,
-        en ciertos modelos este problema tiene solución.</p>
+        <p>En ciertos modelos, la eliminación de la cuenta
+        solicitada tras un formateo tiene solución.</p>
       </div>
     </div>
 
     <div class="service-card">
       <div class="service-header">
-        <h3>🛠 Diagnóstico Rápido</h3><span class="arrow">+</span>
+        <h3>🛠 Diagnóstico Rápido</h3><span class="toggle">+</span>
       </div>
       <div class="service-content">
-        <p>Detectamos fallas rápidamente para ofrecerte
-        la mejor solución sin demoras.</p>
+        <p>Detectamos la falla rápidamente para ofrecerte
+        la mejor solución sin vueltas.</p>
       </div>
     </div>
 
     <div class="service-card">
       <div class="service-header">
-        <h3>📲 Todas las Marcas</h3><span class="arrow">+</span>
+        <h3>📲 Todas las Marcas</h3><span class="toggle">+</span>
       </div>
       <div class="service-content">
-        <p>Trabajamos con todas las marcas del mercado,
-        adaptándonos a cada modelo.</p>
+        <p>Trabajamos con todas las marcas y modelos del mercado.</p>
       </div>
     </div>
 
   </div>
 </section>
 
+<section class="trust">
+  <p>
+    Atención personalizada, repuestos de calidad y experiencia real en reparación.
+    Tu celular en manos de alguien que sabe lo que hace.
+  </p>
+</section>
+
 <footer>
-  Mobile Repair ·
-  <a href="https://wa.me/5492634307686" target="_blank">WhatsApp</a> /
-  <a href="https://www.instagram.com/javitolc22/" target="_blank">Instagram</a> /
+  <a href="https://wa.me/5492634307686" target="_blank">WhatsApp</a> ·
+  <a href="https://www.instagram.com/javitolc22/" target="_blank">Instagram</a> ·
   <a href="https://www.facebook.com/share/1AF5QUZZCn/" target="_blank">Facebook</a>
 </footer>
 
-<script>
-const cards = document.querySelectorAll('.service-card');
+<a class="whatsapp" href="https://wa.me/5492634307686" target="_blank">💬</a>
 
-cards.forEach(card => {
-  card.querySelector('.service-header').addEventListener('click', () => {
-    if (card.classList.contains('active')) {
+<script>
+const cards=document.querySelectorAll('.service-card');
+cards.forEach(card=>{
+  card.addEventListener('click',()=>{
+    if(card.classList.contains('active')){
       card.classList.remove('active');
-    } else {
-      cards.forEach(c => c.classList.remove('active'));
+    }else{
+      cards.forEach(c=>c.classList.remove('active'));
       card.classList.add('active');
     }
   });
