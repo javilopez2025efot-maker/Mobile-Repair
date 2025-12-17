@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mobile Repair</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
 
-    body, html {
-      height: 100%;
-      scroll-behavior: smooth;
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
     }
 
-    /* HERO */
+    html, body {
+      height: 100%;
+    }
+
+    /* ===== HERO ===== */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('fondo.png') center/cover no-repeat;
+      background:
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url("Fondo.png") center / cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -25,18 +32,20 @@
     }
 
     .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
+      font-size: 3.2rem;
+      margin-bottom: 15px;
       animation: fadeDown 1.2s ease;
     }
 
     .hero p {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: auto;
       opacity: 0.9;
       animation: fadeUp 1.2s ease;
     }
 
-    /* SERVICIOS */
+    /* ===== SERVICIOS ===== */
     .services {
       background: #0e1624;
       padding: 80px 20px;
@@ -46,69 +55,37 @@
 
     .service-card {
       background: #111c2e;
-      border-radius: 18px;
-      width: 100%;
-      max-width: 600px;
-      padding: 30px;
       color: #fff;
+      max-width: 600px;
+      width: 100%;
+      border-radius: 18px;
+      padding: 35px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-      cursor: pointer;
-      transition: transform 0.3s ease;
     }
 
-    .service-card:hover {
-      transform: translateY(-5px);
+    .service-card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .service-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 24px;
-  padding: 40px 20px;
-  background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('Fondo.png') center / cover no-repeat;
-}
-
-header::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  z-index: 0;
-}
-
-header > * {
-  position: relative;
-  z-index: 1;
-}
-
-    .service-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease;
-      margin-top: 15px;
-      line-height: 1.6;
+    .service-card p {
+      line-height: 1.7;
       opacity: 0.9;
     }
 
-    .service-card.active .service-content {
-      max-height: 300px;
-    }
-
-    /* FOOTER */
+    /* ===== FOOTER ===== */
     footer {
       background: #0a1120;
-      color: #ccc;
+      color: #aaa;
       text-align: center;
       padding: 20px;
       font-size: 0.9rem;
     }
 
-    /* ANIMACIONES */
+    /* ===== ANIMACIONES ===== */
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -119,48 +96,40 @@ header > * {
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 600px) {
       .hero h1 { font-size: 2.2rem; }
-      .hero p { font-size: 1.1rem; }
+      .hero p { font-size: 1.05rem; }
     }
   </style>
 </head>
 <body>
-  <header>
-  <h1>Mobile Repair</h1>
-  <p class="subtitle">Especialistas en reparación de celulares</p>
 
-  <div class="hero-service">
-    <div class="service-card" onclick="this.classList.toggle('open')">
-      <div class="service-header">
-        <span class="icon">📱</span>
-        <h3>Cambio de Pantalla</h3>
-        <span class="toggle">+</span>
-      </div>
-      <div class="service-content">
-        <p><strong>¿Pantalla rota o trizada?</strong></p>
-        <p>Somos la solución. Reemplazamos tu pantalla por una nueva y de calidad, para que te olvides de los problemas de seguridad, fallas táctiles y molestias en el uso diario.</p>
-      </div>
-    </div>
-  </div>
-</header>
-
-  <section class="hero-service">
-    <div class="service-card" onclick="this.classList.toggle('open')">
-      <div class="service-header">
-        <span class="icon">📱</span>
-        <h3>Cambio de Pantalla</h3>
-        <span class="toggle">+</span>
-      </div>
-      <div class="service-content">
-        <p><strong>¿Pantalla rota o trizada?</strong></p>
-        <p>Somos la solución. Reemplazamos tu pantalla por una nueva y de calidad, para que te olvides de los problemas de seguridad, fallas táctiles y molestias visuales.</p>
-      </div>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <h1>Mobile Repair</h1>
+      <p>Reparación profesional de celulares y soluciones tecnológicas</p>
     </div>
   </section>
 
+  <!-- SERVICIOS -->
+  <section class="services">
+    <div class="service-card">
+      <h2>📱 Cambio de Pantalla</h2>
+      <p>
+        <strong>¿Pantalla rota o trizada?</strong><br><br>
+        Somos la solución. Reemplazamos tu pantalla por una nueva y de alta calidad,
+        garantizando una excelente respuesta táctil y una visualización perfecta
+        para que vuelvas a usar tu celular como el primer día.
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
     Mobile Repair · Contacto por WhatsApp / Instagram
   </footer>
+
 </body>
 </html>
