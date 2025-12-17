@@ -6,6 +6,12 @@
 <title>Mobile Repair</title>
 
 <style>
+:root {
+  --neon-1: #00e5ff;
+  --neon-2: #7c4dff;
+  --neon-3: #18ffff;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -13,8 +19,9 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
-html, body {
-  height: 100%;
+body {
+  background: #0e1624;
+  color: #fff;
 }
 
 /* ===== HERO ===== */
@@ -24,25 +31,34 @@ html, body {
     linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
     url("Fondo.png") center / cover no-repeat;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   text-align: center;
-  color: #fff;
-  padding: 20px;
+  animation: neonShift 14s infinite alternate;
 }
 
 .hero h1 {
   font-size: 3rem;
+  text-shadow:
+    0 0 15px rgba(0,229,255,0.4),
+    0 0 40px rgba(124,77,255,0.3);
 }
 
 .hero p {
+  margin-top: 10px;
   font-size: 1.2rem;
-  opacity: 0.9;
+  color: #e0f7ff;
+}
+
+/* ===== ANIMACIONES GLOBALES ===== */
+@keyframes neonShift {
+  0% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(35deg); }
+  100% { filter: hue-rotate(0deg); }
 }
 
 /* ===== SERVICIOS ===== */
 .services {
-  background: #0e1624;
   padding: 80px 20px;
 }
 
@@ -55,11 +71,37 @@ html, body {
 }
 
 .service-card {
+  position: relative;
   background: #111c2e;
-  color: #fff;
   border-radius: 16px;
   padding: 22px 24px;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 16px;
+  background: linear-gradient(120deg, var(--neon-1), var(--neon-2), var(--neon-3));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.service-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+}
+
+.service-card:hover::before,
+.service-card.active::before {
+  opacity: 0.25;
 }
 
 .service-header {
@@ -72,6 +114,7 @@ html, body {
 .service-header h3 {
   font-size: 1.15rem;
   font-weight: 500;
+  color: #e6faff;
   display: flex;
   gap: 8px;
   align-items: center;
@@ -79,25 +122,45 @@ html, body {
 
 .arrow {
   font-size: 1.4rem;
-  transition: transform 0.3s ease;
+  color: var(--neon-1);
+  text-shadow: 0 0 6px rgba(0,229,255,0.6);
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .service-content {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease;
-  margin-top: 10px;
   font-size: 0.95rem;
   line-height: 1.5;
   opacity: 0.9;
+  margin-top: 10px;
 }
 
+/* ACTIVO */
 .service-card.active .service-content {
   max-height: 300px;
 }
 
 .service-card.active .arrow {
-  transform: rotate(45deg);
+  transform: rotate(45deg) scale(1.1);
+  color: var(--neon-2);
+}
+
+.service-card.active h3 {
+  color: var(--neon-1);
+  text-shadow: 0 0 6px rgba(0,229,255,0.6);
+}
+
+/* Glow pulsante */
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 12px rgba(0,229,255,0.25); }
+  50% { box-shadow: 0 0 28px rgba(124,77,255,0.45); }
+  100% { box-shadow: 0 0 12px rgba(0,229,255,0.25); }
+}
+
+.service-card.active {
+  animation: glowPulse 3s infinite;
 }
 
 /* ===== FOOTER ===== */
@@ -132,17 +195,12 @@ footer {
   .service-header h3 {
     font-size: 1.05rem;
   }
-
-  .service-content {
-    font-size: 0.9rem;
-  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
 <section class="hero">
   <div>
     <h1>Mobile Repair</h1>
@@ -150,7 +208,6 @@ footer {
   </div>
 </section>
 
-<!-- SERVICIOS -->
 <section class="services">
   <div class="services-container">
 
@@ -180,7 +237,7 @@ footer {
         <h3>⚡ Pin de Carga</h3><span class="arrow">+</span>
       </div>
       <div class="service-content">
-        <p>Reparamos o reemplazamos el pin de carga cuando el equipo
+        <p>Reparación o reemplazo del pin cuando el equipo
         no carga o solo funciona en cierta posición.</p>
       </div>
     </div>
@@ -190,8 +247,8 @@ footer {
         <h3>💻 Software / Formateo</h3><span class="arrow">+</span>
       </div>
       <div class="service-content">
-        <p>Optimización, formateo y actualización de software
-        para que tu celular vuelva a funcionar rápido y estable.</p>
+        <p>Formateo, actualización y optimización para que
+        tu celular vuelva a funcionar rápido y estable.</p>
       </div>
     </div>
 
@@ -200,8 +257,8 @@ footer {
         <h3>🔐 Eliminación Cuenta Google</h3><span class="arrow">+</span>
       </div>
       <div class="service-content">
-        <p>¿Formateaste tu celular y te pide una cuenta que no recordás?
-        En ciertos modelos este problema tiene solución.</p>
+        <p>Si formateaste tu equipo y te pide una cuenta que no recordás,
+        en ciertos modelos este problema tiene solución.</p>
       </div>
     </div>
 
@@ -210,8 +267,8 @@ footer {
         <h3>🛠 Diagnóstico Rápido</h3><span class="arrow">+</span>
       </div>
       <div class="service-content">
-        <p>Detectamos fallas rápidamente para ofrecerte la mejor
-        solución sin demoras ni sorpresas.</p>
+        <p>Detectamos fallas rápidamente para ofrecerte
+        la mejor solución sin demoras.</p>
       </div>
     </div>
 
@@ -221,7 +278,7 @@ footer {
       </div>
       <div class="service-content">
         <p>Trabajamos con todas las marcas del mercado,
-        adaptando la solución a cada modelo.</p>
+        adaptándonos a cada modelo.</p>
       </div>
     </div>
 
@@ -234,6 +291,7 @@ footer {
 
 <script>
 const cards = document.querySelectorAll('.service-card');
+
 cards.forEach(card => {
   card.querySelector('.service-header').addEventListener('click', () => {
     if (card.classList.contains('active')) {
